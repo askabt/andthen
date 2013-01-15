@@ -1,0 +1,24 @@
+{
+  "name": "vow",
+  "version": "0.1.0",
+  "description": "A minimal CommonJS Promises/A library with a twist.",
+  "main": "lib/vow.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test/vow.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/askabt/vow.git"
+  },
+  "keywords": [
+    "async",
+    "deferred",
+    "promise",
+    "future"
+  ],
+  "author": "Askabt",
+  "license": "MIT"
+}
