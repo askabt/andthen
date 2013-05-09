@@ -1,17 +1,17 @@
 {
-  "name": "vow",
+  "name": "andthen",
   "version": "0.1.0",
   "description": "A minimal CommonJS Promises/A library with a twist.",
-  "main": "lib/vow.js",
+  "main": "lib/andthen.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "node test/vow.js"
+    "test": "node test/andthen-test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/askabt/vow.git"
+    "url": "git://github.com/askabt/andthen.git"
   },
   "keywords": [
     "async",
