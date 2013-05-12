@@ -1,21 +1,36 @@
 "use strict";
-var defer = require("../lib/andthen");
+var defer = require("../lib/andthen"),
+    assert = require("assert");
 
-function longOp(num) {
+var startTime = new Date().getTime();
+
+function op(num) {
     var result = defer();
-    console.log("Queue", num);
     setTimeout(function() {
-        console.log("Dequeue", num);
         result.resolve(num);
     }, 100);
     return result.promise;
 }
 
-longOp(1).
+function thrower(e) {
+    throw e;
+}
+
+function noop() {};
+
+op(1).
 then(function(n) {
-    console.log("First", n);
-    return defer(n).and(longOp(2).and(longOp(3)));
-}).then(function(first, second, third) {
-   console.log("Results", first, second, third, arguments);
+    return op(n).and(op(2).and(op(3)));
+}).then(function(a, b, c) {
+   assert(a === 1);
+   assert(b === 2);
+   assert(c === 3);
 });
 
+op(1).then(thrower).then(noop, function(e) {
+    assert(e === 1);
+});
+
+/* Uncomment the following line to ensure that an error is thrown
+ * asynchronously when no error callback is attached.
+// op(1).then(thrower);

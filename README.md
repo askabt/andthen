@@ -1,49 +1,84 @@
-vow
-===
+And Then...
+===========
 
-A minimal CommonJS Promises/A library with a twist.
+there was a minimal CommonJS promises library with useful things like parallel execution, fulfilments and exception handling, without losing the beautiful simplicity of .then().
 
-Loosely based on the documentation of [kriskowal's q library](http://documentup.com/kriskowal/q).
+Enter .and()
+------------
+It's like saying, "Do this ***and*** that, ***then*** do the other thing."
 
-Standard stuff
---------------
-You want to do a bunch of things in series without nested callbacks:
 ```javascript
-longOperation(1).
-then(function(firstResult) {
-  return longOperation(2);
-}).then(function(secondResult) {
-  return longOperation(3);
-}).then(function(thirdResult) {
-  console.log("Woo!");
-})
+	doThis().and(doThat()).then(function(this, that) {
+		return doOther(this + that);
+	});
 ```
 
-The twist
----------
-What if you want to do them in parallel, but wait for all of them to be done?
-```javascript
-longOperation(1).
-and(longOperation(2)).
-and(longOperation(3)).
-then(function(firstResult, secondResult, thirdResult) {
-  console.log("Awesome!");
-})
-```
-
-Mix 'em up
+Exceptions
 ----------
-If you use Gantt charts to model control flow.
+Exceptions thrown in a .then() callback are caught and turned into promise rejections so they can be handled by subsequent errback's.
+
 ```javascript
-longOperation(1).and(
-  longOperation(2).and(longOperation(3)).
-  then(function(secondResult, thirdResult) {
-    return someOperation(secondResult, thirdResult);
-  })
-).then(function(firstResult, resultOfOperation) {
-  console.log("All done!");
-});
+	promise.then(function() {
+		throw new Error('Boo!');
+	}).then(null, function(err) {    // Passing an error callback.
+		console.log(err.message);    // Boo!
+	});
 ```
+
+If there's a chain of promises where you forgot to add an error callback, andthen will turn promise rejections into errors that are then thrown. This will alert you to problems that, with other libraries, might go undetected.
+
+Questions and Feedback
+----------------------
+You can chat with me about andthen now - I hang out on [http://askabt.com/andthen].
+
+<shameless-plug> Askabt is like IRC, but prettier, easier and works via your XMPP account. You can sign in with your Github account to join the community around your projects and the languages you use. </shameless-plug>
+
+Installation
+------------
+If you want to use it in Node.js
+
+	npm install and-then
+
+To use on the client side, just download andthen.js (or andthen.min.js) from Github.
+
+Usage
+-----
+Include andthen using CommonJS require(), AMD require, or simple <script> tags. Usage is pretty close to other deferred libraries:
+
+```
+	function promiseMaker() {
+		var result = andthen();
+		
+	}
+```
+
+### Parallel Execution
+Call `.and()` on Promise A and pass it a Promise B to obtain a new promise C. When both A and B have returned, promise C will resolve into ***both*** values, i.e. a `.then()` callback attached on C will be called with two arguments.
+
+You can chain .and()'s. The resolution values of both A and B are passed as arguments to the .then() callback on promise C. For example:
+
+```javascript
+	getA().and(getB()).then(function(a, b) {
+		// ...
+	});
+	
+	getA().and(getB()).and(getC()).then(function(a, b, c) {
+		// ...
+	});
+```
+
+
+### Fulfilment
+Sometimes you want a promise that's already resolved - for example you need to pass it to a function that expects a promise. You can save some keystrokes using the `andthen(value)` syntax.
+
+You can also pre-fulfil the multi-valued promises that .and() generates, like `andthen(val1, val2, val3)`. 
+
+Credit
+------
+Loosely based on the documentation of [kriskowal's q library][Q].
+
+[Q]: http://documentup.com/kriskowal/q
+
 
 License
 -------

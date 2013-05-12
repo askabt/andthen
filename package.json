@@ -1,8 +1,8 @@
 {
-  "name": "andthen",
+  "name": "and-then",
   "version": "0.1.0",
   "description": "A minimal CommonJS Promises/A library with a twist.",
-  "main": "lib/andthen.js",
+  "main": "andthen.js",
   "directories": {
     "test": "test"
   },
