@@ -31,7 +31,7 @@ Questions and Feedback
 ----------------------
 You can chat with me about andthen now - I hang out on http://askabt.com/andthen.
 
-&lt;shameless-plug> Askabt is like IRC, but prettier, easier and works via your XMPP account. You can sign in with your Github account to join the community around your projects and the languages you use. </shameless-plug>
+&lt;shameless-plug> Askabt is like IRC, but prettier, easier and works via your XMPP account. You can sign in with your Github account to join the community around your projects and the languages you use. &lt;/shameless-plug>
 
 Installation
 ------------
@@ -43,7 +43,7 @@ To use on the client side, just download andthen.js (or andthen.min.js) from Git
 
 Usage
 -----
-Include andthen using CommonJS require(), AMD require, or simple <script> tags. Usage is pretty close to other deferred libraries:
+Include andthen using CommonJS require(), AMD require, or simple &lt;script> tags. Usage is pretty close to other deferred libraries:
 
 ```
 	function promiseMaker() {
