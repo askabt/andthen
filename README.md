@@ -29,9 +29,9 @@ If there's a chain of promises where you forgot to add an error callback, andthe
 
 Questions and Feedback
 ----------------------
-You can chat with me about andthen now - I hang out on [http://askabt.com/andthen].
+You can chat with me about andthen now - I hang out on http://askabt.com/andthen.
 
-<shameless-plug> Askabt is like IRC, but prettier, easier and works via your XMPP account. You can sign in with your Github account to join the community around your projects and the languages you use. </shameless-plug>
+&lt;shameless-plug> Askabt is like IRC, but prettier, easier and works via your XMPP account. You can sign in with your Github account to join the community around your projects and the languages you use. </shameless-plug>
 
 Installation
 ------------
