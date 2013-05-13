@@ -3,13 +3,17 @@ And Then...
 
 there was a minimal CommonJS promises library with useful things like parallel execution, fulfilments and exception handling, without losing the beautiful simplicity of .then().
 
-Enter .and()
+Questions and Feedback
+----------------------
+Chat with me about andthen **right now** - I hang out on http://askabt.com/andthen. &lt;shameless-plug> Askabt is like an IRC channel, but prettier, easier and works via the web and your XMPP account. Sign in with your Github account to join the communities around your repos and the languages you use. &lt;/shameless-plug>
+
+.and()
 ------------
-It's like saying, "Do this ***and*** that, ***then*** do the other thing."
+Parallel execution is like saying, "Do this ***and*** that, ***then*** do the other thing." With andthen, you can express it like:
 
 ```javascript
-	doThis().and(doThat()).then(function(this, that) {
-		return doOther(this + that);
+	doThis().and(doThat()).then(function(thisResult, thatResult) {
+		return doOther();
 	});
 ```
 
@@ -26,12 +30,6 @@ Exceptions thrown in a .then() callback are caught and turned into promise rejec
 ```
 
 If there's a chain of promises where you forgot to add an error callback, andthen will turn promise rejections into errors that are then thrown. This will alert you to problems that, with other libraries, might go undetected.
-
-Questions and Feedback
-----------------------
-You can chat with me about andthen now - I hang out on http://askabt.com/andthen.
-
-&lt;shameless-plug> Askabt is like IRC, but prettier, easier and works via your XMPP account. You can sign in with your Github account to join the community around your projects and the languages you use. &lt;/shameless-plug>
 
 Installation
 ------------
